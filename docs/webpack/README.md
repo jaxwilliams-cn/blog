@@ -29,3 +29,8 @@
 ## 说明
 
 文内所使用的 webpack 版本为 5.x
+
+## 目录
+
+[x] 什么是 webpack？ 解释 webpack 诞生的原因和应用场景。
+[x] webpack 模块 解释 webpack 是如何在浏览器中隔离作用域的
