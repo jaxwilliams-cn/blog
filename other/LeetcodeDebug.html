@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Leetcode x vscode x typescript</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.775e5fee.css" as="style"><link rel="preload" href="/assets/js/app.79ac543d.js" as="script"><link rel="preload" href="/assets/js/2.10178664.js" as="script"><link rel="preload" href="/assets/js/9.ce20b86e.js" as="script"><link rel="prefetch" href="/assets/js/10.748396af.js"><link rel="prefetch" href="/assets/js/11.4bc5bc5f.js"><link rel="prefetch" href="/assets/js/3.0d0d0c7c.js"><link rel="prefetch" href="/assets/js/4.6fd1ef01.js"><link rel="prefetch" href="/assets/js/5.15184a61.js"><link rel="prefetch" href="/assets/js/6.ffe6f60a.js"><link rel="prefetch" href="/assets/js/7.dee03a64.js"><link rel="prefetch" href="/assets/js/8.0f807b60.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.775e5fee.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="leetcode-x-vscode-x-typescript"><a href="#leetcode-x-vscode-x-typescript" class="header-anchor">#</a> Leetcode x vscode x typescript</h1> <p>最近闲来无事，捡起了 leetcode 复习复习，突然发现 leetcode 可以直接提交 typescript 代码了，
+毫无疑问，作为前端工程师的我 pick 了 ts，
+众所周知，leetcode 提交代码 debug 非常的慢，所以在本地配置一下开发环境和 debug 环境还是很有必要的
+我使用的 vscode 编辑器，因此本文即是 vscode debug leetcode(typescript)的配置分享</p> <h1 id="需求清单"><a href="#需求清单" class="header-anchor">#</a> 需求清单</h1> <ol><li>node, npm/yarn</li> <li>git(可选的)</li> <li>vscode</li> <li>leetcode 账号</li></ol> <h1 id="配置清单"><a href="#配置清单" class="header-anchor">#</a> 配置清单</h1> <p><code>package.json</code></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">&quot;@types/node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^14.11.8&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;ts-node&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^9.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;typescript&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.0.3&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><p><code>tsconfig.json</code></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;target&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ES2018&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;module&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CommonJS&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;strict&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;outDir&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./build&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;sourceMap&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;include&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;src/**/*&quot;</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>.vscode/launch.json</code></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token comment">// Use IntelliSense to learn about possible attributes.</span>
+  <span class="token comment">// Hover to view descriptions of existing attributes.</span>
+  <span class="token comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.2.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;configurations&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;request&quot;</span><span class="token operator">:</span> <span class="token string">&quot;launch&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Current TS File&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;skipFiles&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;&lt;node_internals&gt;/**&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;program&quot;</span><span class="token operator">:</span> <span class="token string">&quot;${file}&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;preLaunchTask&quot;</span><span class="token operator">:</span> <span class="token string">&quot;tsc: build - tsconfig.json&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;outFiles&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;${workspaceFolder}/build/**/*.js&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>.gitignore</p> <div class="language- extra-class"><pre class="language-text"><code>build
+node_modules
+</code></pre></div><p><code>目录结构</code></p> <ul><li>src // 我习惯放在 src 目录下，如果希望放在其他目录，可以修改 tsconfig.json 的 include 配置
+<ul><li>2020-10 // 我喜欢按日期分类，也可以按题型分类
+<ul><li>2020-10-01.ts</li></ul></li></ul></li> <li>build // 自动生成的配置</li></ul> <h1 id="如何-debug"><a href="#如何-debug" class="header-anchor">#</a> 如何 debug</h1> <p>直接在 ts 文件中打断点，按 F5 即可开始调试当前文件</p> <h1 id="tips"><a href="#tips" class="header-anchor">#</a> tips</h1> <h2 id="题目贴在文件顶部"><a href="#题目贴在文件顶部" class="header-anchor">#</a> 题目贴在文件顶部</h2> <p>从 leetcodecopy 题目，且会自动附上连接，对于以后二刷很有帮助。</p> <h2 id="自己编写测试用例"><a href="#自己编写测试用例" class="header-anchor">#</a> 自己编写测试用例</h2> <p>使用 nodejs<code>assert</code>模块中的<code>strictEqual</code>, <code>deepStrictEqual</code>就可以快速的对代码做单元测试</p> <p>如</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// https://leetcode-cn.com/problems/count-binary-substrings</span>
+<span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">countBinarySubstrings</span><span class="token punctuation">(</span><span class="token string">'00110011'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span>
+<span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">countBinarySubstrings</span><span class="token punctuation">(</span><span class="token string">'10101'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>
+<span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">countBinarySubstrings</span><span class="token punctuation">(</span><span class="token string">'00111'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">strictEqual</span><span class="token punctuation">(</span><span class="token function">countBinarySubstrings</span><span class="token punctuation">(</span><span class="token string">'0100110'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="常用数据结构整理成库"><a href="#常用数据结构整理成库" class="header-anchor">#</a> 常用数据结构整理成库</h2> <p>如树的结构</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">// src/libs/tree.ts</span>
+<span class="token keyword">class</span> <span class="token class-name">TreeNode</span> <span class="token punctuation">{</span>
+  val<span class="token operator">:</span> <span class="token builtin">number</span>
+  left<span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span>
+  right<span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span>val<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> left<span class="token operator">?</span><span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span> right<span class="token operator">?</span><span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>val <span class="token operator">=</span> val <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> val
+    <span class="token keyword">this</span><span class="token punctuation">.</span>left <span class="token operator">=</span> left <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> left
+    <span class="token keyword">this</span><span class="token punctuation">.</span>right <span class="token operator">=</span> right <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token operator">:</span> right
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 完全二叉树层序遍历还原二叉树</span>
+  <span class="token keyword">static</span> <span class="token function">fromLevelOrderTraversal</span><span class="token punctuation">(</span>arr<span class="token operator">:</span> <span class="token punctuation">(</span><span class="token builtin">number</span> <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 中序遍历</span>
+    <span class="token keyword">function</span> <span class="token function">_convertTree</span><span class="token punctuation">(</span>root<span class="token operator">:</span> TreeNode <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token operator">:</span> TreeNode<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token function">_convertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> root<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token function">_convertTree</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">_convertTree</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="关于坚持-✊"><a href="#关于坚持-✊" class="header-anchor">#</a> 关于坚持 ✊</h2> <p>少做一题不要紧，松懈一天没关系，没必要自我谴责，只要别放弃，慢慢的就成习惯了。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.79ac543d.js" defer></script><script src="/assets/js/2.10178664.js" defer></script><script src="/assets/js/9.ce20b86e.js" defer></script>
+  </body>
+</html>
